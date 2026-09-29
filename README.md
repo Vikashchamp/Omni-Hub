@@ -20,8 +20,9 @@ OMNI HUB is a Chrome extension + web application + AI backend that sits alongsid
 
 ```
 omni-hub/
-├── extension/          # Chrome Manifest V3 extension (React + TypeScript)
-├── web/                # OMNI HUB web application (React + Vite + Tailwind)
+├── apps/
+│   ├── extension/      # Chrome Manifest V3 extension (React + TypeScript)
+│   └── web/            # OMNI HUB web application (React + Vite + Tailwind)
 ├── backend/            # FastAPI backend (Python)
 ├── database/           # SQL migrations and schema
 └── docs/               # Architecture documentation
@@ -50,7 +51,7 @@ omni-hub/
 | Extension | React, TypeScript, Chrome MV3, Vite |
 | Web App | React, TypeScript, Vite, Tailwind CSS |
 | Backend | Python, FastAPI, Pydantic |
-| AI | Gemini 2.0 Flash + text-embedding-004 |
+| AI | Gemini 2.0 Flash + gemini-embedding-2 |
 | Database | Supabase PostgreSQL + pgvector |
 | Auth | Supabase Auth (JWT) |
 
@@ -71,7 +72,9 @@ omni-hub/
 
 ## Status
 
-> **📋 Architecture phase complete. Implementation not started.**
+> **📋 Phase 1: Project Foundation complete.**
+>
+> Repository layout, root configuration (`.gitignore`, `.env.example`), and package placeholders established. Implementation of application features begins in Phase 2.
 >
 > See [development-plan.md](docs/development-plan.md) for setup instructions and phase breakdown.
 

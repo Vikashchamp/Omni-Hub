@@ -1,0 +1,198 @@
+# ─────────────────────────────────────────────
+# OMNI HUB — Root .gitignore
+# Covers: Node, React/Vite, TypeScript, Chrome Extension,
+#         Python, FastAPI, virtual environments, .env files,
+#         IDE files, build artifacts, logs, OS files
+# ─────────────────────────────────────────────
+
+# ──────────────────────────
+# SECRETS — Never commit these
+# ──────────────────────────
+.env
+.env.local
+.env.development
+.env.production
+.env.staging
+.env.*.local
+*.pem
+*.key
+secrets/
+credentials/
+
+# ──────────────────────────
+# Node / npm / yarn / pnpm
+# ──────────────────────────
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+.pnp/
+.pnp.js
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+package-lock.json
+yarn.lock
+
+# ──────────────────────────
+# Vite / React build output
+# ──────────────────────────
+dist/
+dist-ssr/
+build/
+out/
+.vite/
+*.local
+
+# ──────────────────────────
+# TypeScript
+# ──────────────────────────
+*.tsbuildinfo
+tsconfig.tsbuildinfo
+
+# ──────────────────────────
+# Chrome Extension
+# ──────────────────────────
+# Built extension (loaded unpacked from dist/)
+apps/extension/dist/
+apps/extension/.crx/
+# Packed extension files
+*.crx
+*.zip
+# Web store screenshots / draft assets (keep intentional ones with force-add)
+*.xpi
+
+# ──────────────────────────
+# Python
+# ──────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+eggs/
+parts/
+var/
+sdist/
+wheels/
+share/python-wheels/
+.eggs/
+lib/
+lib64/
+MANIFEST
+
+# ──────────────────────────
+# Virtual Environments
+# ──────────────────────────
+.venv/
+venv/
+ENV/
+env/
+env.bak/
+venv.bak/
+.python-version
+
+# ──────────────────────────
+# uv (Python package manager)
+# ──────────────────────────
+# Keep uv.lock committed for reproducible installs
+# but ignore uv's internal cache
+.uv/
+
+# ──────────────────────────
+# FastAPI / Uvicorn
+# ──────────────────────────
+*.pid
+
+# ──────────────────────────
+# Pytest / Testing
+# ──────────────────────────
+.pytest_cache/
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+.tox/
+.nox/
+nosetests.xml
+coverage/
+*.lcov
+
+# ──────────────────────────
+# Logs
+# ──────────────────────────
+logs/
+*.log
+npm-debug.log*
+pip-log.txt
+pip-delete-this-directory.txt
+
+# ──────────────────────────
+# IDE — VS Code
+# ──────────────────────────
+.vscode/
+!.vscode/extensions.json
+!.vscode/settings.json.example
+
+# ──────────────────────────
+# IDE — JetBrains (PyCharm, WebStorm, etc.)
+# ──────────────────────────
+.idea/
+*.iml
+*.ipr
+*.iws
+out/
+
+# ──────────────────────────
+# IDE — Vim / Emacs
+# ──────────────────────────
+*.swp
+*.swo
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+.elc
+
+# ──────────────────────────
+# OS — macOS
+# ──────────────────────────
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# ──────────────────────────
+# OS — Windows
+# ──────────────────────────
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# ──────────────────────────
+# OS — Linux
+# ──────────────────────────
+*~
+.nfs*
+
+# ──────────────────────────
+# Temporary / scratch
+# ──────────────────────────
+tmp/
+temp/
+scratch/
+*.tmp
+*.bak
+*.orig
