@@ -51,7 +51,7 @@ omni-hub/
 | Extension | React, TypeScript, Chrome MV3, Vite |
 | Web App | React, TypeScript, Vite, Tailwind CSS |
 | Backend | Python, FastAPI, Pydantic |
-| AI | Gemini 2.0 Flash + gemini-embedding-2 |
+| AI | Gemini 3.8 Flash + gemini-embedding-2 |
 | Database | Supabase PostgreSQL + pgvector |
 | Auth | Supabase Auth (JWT) |
 

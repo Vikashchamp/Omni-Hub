@@ -20,12 +20,12 @@ OMNI HUB's AI layer follows three principles:
 
 | Use Case | Model | Reason |
 |----------|-------|--------|
-| AI actions (summarize, ask, etc.) | `gemini-2.0-flash` | Fast, cost-effective, long context |
-| Memory Q&A (RAG) | `gemini-2.0-flash` | Same model for consistency |
+| AI actions (summarize, ask, etc.) | `gemini-3.8-flash` | Fast, cost-effective, long context |
+| Memory Q&A (RAG) | `gemini-3.8-flash` | Same model for consistency |
 | Embeddings | `gemini-embedding-2` | Default 3072-dim; configurable 128–3072 via `output_dimensionality` |
 | Complex extractions | `gemini-2.5-pro` (optional) | Higher accuracy when needed (future) |
 
-**Context window:** `gemini-2.0-flash` supports 1M tokens — far more than any single webpage.
+**Context window:** `gemini-3.8-flash` supports 1M tokens — far more than any single webpage.
 
 ---
 
@@ -365,7 +365,7 @@ Return answer + source list to client
 
 ## 7. Content Length Handling
 
-Gemini 2.0 Flash has a 1M token context window. However, sending 100K+ tokens per request is expensive. The backend applies smart truncation:
+Gemini 3.8 Flash has a 1M token context window. However, sending 100K+ tokens per request is expensive. The backend applies smart truncation:
 
 | Context Type | Strategy |
 |-------------|----------|
@@ -444,7 +444,7 @@ System prompts are backend-only. They are never sent to the client. The client o
 
 ## 11. Cost Estimation (MVP)
 
-Using Gemini 2.0 Flash pricing:
+Using Gemini 3.8 Flash pricing:
 
 | Operation | Avg Tokens In | Avg Tokens Out | Cost/request |
 |-----------|--------------|----------------|--------------|

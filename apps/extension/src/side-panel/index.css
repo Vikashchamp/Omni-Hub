@@ -497,3 +497,226 @@ html, body {
   cursor: not-allowed;
   opacity: 0.5;
 }
+
+/* Animations */
+.spin-animation {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Loading Status Chip */
+.brand-status-chip.loading {
+  background: rgba(213, 194, 244, 0.12);
+  border-color: rgba(213, 194, 244, 0.4);
+  color: var(--omni-accent-bright);
+}
+
+.status-dot.loading {
+  background-color: var(--omni-accent-bright);
+  box-shadow: 0 0 8px var(--omni-accent-bright);
+  animation: pulse-dot 1.2s infinite ease-in-out;
+}
+
+/* Summarize Button Special Styling */
+.action-btn.btn-summarize:hover:not(:disabled) {
+  border-color: var(--omni-accent-bright);
+  box-shadow: 0 0 14px var(--omni-glow);
+}
+
+.action-btn:disabled {
+  opacity: 0.7;
+  cursor: wait;
+}
+
+/* Error Banner */
+.error-banner {
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  border-radius: 8px;
+  padding: 10px 12px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  animation: slide-in 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.error-icon {
+  color: #F87171;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.error-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.error-title {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #F87171;
+}
+
+.error-message {
+  font-size: 11px;
+  color: #FECACA;
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+.error-dismiss-btn {
+  background: transparent;
+  border: none;
+  color: #F87171;
+  cursor: pointer;
+  padding: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: opacity 0.15s ease;
+}
+
+.error-dismiss-btn:hover {
+  opacity: 0.8;
+}
+
+/* Summary Result Card */
+.summary-result-card {
+  background: var(--omni-card);
+  border: 1px solid var(--omni-accent-primary);
+  border-radius: 10px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35), 0 0 16px var(--omni-glow);
+  animation: slide-in 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.summary-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--omni-border-subtle);
+  padding-bottom: 8px;
+}
+
+.summary-title-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.summary-icon-sparkle {
+  color: var(--omni-accent-bright);
+}
+
+.summary-title-text {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--omni-accent-bright);
+}
+
+.summary-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.summary-btn {
+  background: var(--omni-card-elevated);
+  border: 1px solid var(--omni-border);
+  border-radius: 5px;
+  padding: 3px 8px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--omni-text-primary);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.summary-btn:hover {
+  border-color: var(--omni-accent-primary);
+  color: var(--omni-accent-bright);
+}
+
+.summary-btn-close {
+  background: transparent;
+  border: none;
+  color: var(--omni-text-secondary);
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: color 0.15s ease;
+}
+
+.summary-btn-close:hover {
+  color: var(--omni-text-primary);
+}
+
+.summary-page-title {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--omni-text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.summary-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--omni-text-primary);
+  max-height: 280px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.summary-spacer {
+  height: 4px;
+}
+
+.summary-bullet-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.bullet-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--omni-accent-bright);
+  margin-top: 7px;
+  flex-shrink: 0;
+}
+
+.summary-heading {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--omni-accent-bright);
+  margin-top: 6px;
+  margin-bottom: 2px;
+}
+
+.summary-paragraph {
+  color: var(--omni-text-primary);
+}

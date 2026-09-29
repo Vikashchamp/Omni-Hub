@@ -1,6 +1,14 @@
 import React from 'react';
 
-export const Header: React.FC = () => {
+interface HeaderProps {
+  statusText?: string;
+  isLoading?: boolean;
+}
+
+export const Header: React.FC<HeaderProps> = ({ 
+  statusText = 'Ready', 
+  isLoading = false 
+}) => {
   return (
     <header className="brand-header">
       <div className="brand-meta">
@@ -15,9 +23,9 @@ export const Header: React.FC = () => {
           <span className="brand-tagline">Make the web intelligent.</span>
         </div>
       </div>
-      <div className="brand-status-chip">
-        <span className="status-dot" />
-        <span>Ready</span>
+      <div className={`brand-status-chip ${isLoading ? 'loading' : ''}`}>
+        <span className={`status-dot ${isLoading ? 'loading' : ''}`} />
+        <span>{statusText}</span>
       </div>
     </header>
   );

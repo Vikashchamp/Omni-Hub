@@ -6,13 +6,16 @@ import {
   StickyNote, 
   BrainCircuit, 
   Bookmark,
-  CheckCircle2
+  CheckCircle2,
+  Loader2
 } from 'lucide-react';
 import type { ActionType } from '../../types';
 
 interface ActionButtonsProps {
   activeAction: ActionType | null;
   onSelectAction: (action: ActionType) => void;
+  onSummarize: () => void;
+  isSummarizing: boolean;
 }
 
 interface ActionMeta {
@@ -61,26 +64,51 @@ const ACTIONS: ActionMeta[] = [
   },
 ];
 
-export const ActionButtons: React.FC<ActionButtonsProps> = ({ activeAction, onSelectAction }) => {
-  const selectedMeta = ACTIONS.find((a) => a.type === activeAction);
+export const ActionButtons: React.FC<ActionButtonsProps> = ({ 
+  activeAction, 
+  onSelectAction, 
+  onSummarize,
+  isSummarizing 
+}) => {
+  const selectedMeta = ACTIONS.find((a) => a.type === activeAction && a.type !== 'summarize');
+
+  const handleClick = (action: ActionType) => {
+    if (action === 'summarize') {
+      if (!isSummarizing) {
+        onSummarize();
+      }
+    } else {
+      onSelectAction(action);
+    }
+  };
 
   return (
     <section className="actions-section" aria-label="AI Actions">
       <div className="section-label">AI Actions</div>
       <div className="action-grid" role="group" aria-label="AI action buttons">
         {ACTIONS.map((action) => {
+          const isSummarizeBtn = action.type === 'summarize';
           const isActive = activeAction === action.type;
+          const isDisabled = isSummarizeBtn && isSummarizing;
+
           return (
             <button
               key={action.type}
               type="button"
-              className={`action-btn ${isActive ? 'active' : ''}`}
-              onClick={() => onSelectAction(action.type)}
+              className={`action-btn ${isActive ? 'active' : ''} ${isSummarizeBtn ? 'btn-summarize' : ''}`}
+              onClick={() => handleClick(action.type)}
               title={action.description}
               aria-pressed={isActive}
+              disabled={isDisabled}
             >
-              <div className="action-icon-wrap">{action.icon}</div>
-              <span>{action.label}</span>
+              <div className="action-icon-wrap">
+                {isSummarizeBtn && isSummarizing ? (
+                  <Loader2 size={15} className="spin-animation" />
+                ) : (
+                  action.icon
+                )}
+              </div>
+              <span>{isSummarizeBtn && isSummarizing ? 'Analyzing...' : action.label}</span>
             </button>
           );
         })}

@@ -108,7 +108,7 @@ Summarize the content of a page.
     "summary": "string",
     "key_points": ["string"],
     "word_count_original": 1240,
-    "model_used": "gemini-2.0-flash"
+    "model_used": "gemini-3.8-flash"
   }
 }
 ```
@@ -138,7 +138,7 @@ Explain the page content in plain language.
   "success": true,
   "data": {
     "explanation": "string",
-    "model_used": "gemini-2.0-flash"
+    "model_used": "gemini-3.8-flash"
   }
 }
 ```
@@ -174,7 +174,7 @@ Ask a question grounded in the current page content.
       }
     ],
     "conversation_id": "uuid",
-    "model_used": "gemini-2.0-flash"
+    "model_used": "gemini-3.8-flash"
   }
 }
 ```
@@ -204,7 +204,7 @@ Extract structured information from the page.
   "data": {
     "extracted": "string | object",
     "format": "json | table | list",
-    "model_used": "gemini-2.0-flash"
+    "model_used": "gemini-3.8-flash"
   }
 }
 ```
@@ -235,7 +235,7 @@ Generate structured notes from page content.
   "data": {
     "notes": "string",           // Markdown-formatted notes
     "sections": ["string"],      // Section headings
-    "model_used": "gemini-2.0-flash"
+    "model_used": "gemini-3.8-flash"
   }
 }
 ```
@@ -272,7 +272,7 @@ Generate a quiz from page content.
         "explanation": "string"
       }
     ],
-    "model_used": "gemini-2.0-flash"
+    "model_used": "gemini-3.8-flash"
   }
 }
 ```
@@ -346,7 +346,7 @@ Ask a question across all saved memory.
         "similarity_score": 0.87
       }
     ],
-    "model_used": "gemini-2.0-flash"
+    "model_used": "gemini-3.8-flash"
   }
 }
 ```

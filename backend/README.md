@@ -1,46 +1,113 @@
 # OMNI HUB — Backend Service (`backend`)
 
-> **Secure AI Intelligence & Data API**  
-> Python 3.11+ · FastAPI · Google GenAI SDK · Supabase / pgvector
+> **FastAPI Intelligence & AI Backend**  
+> Python 3.11+ · FastAPI · Google GenAI SDK (`google-genai`) · Uvicorn
 
 ---
 
 ## Overview
 
-The backend service is the secure core of OMNI HUB. It mediates all interactions with Gemini AI models, handles embeddings generation via `gemini-embedding-2`, runs vector similarity queries, and validates authentication tokens from Supabase. No AI API keys are ever exposed to client applications.
+The backend service is the secure core of OMNI HUB. It handles all interactions with Google Gemini AI models, keeping API keys protected server-side so client applications never touch secrets.
 
-## Planned Architecture
+In **Phase 3A**, the backend provides:
+- `GET /health` — Readiness probe
+- `POST /api/v1/ai/summarize` — High-value, structured webpage summarization using Gemini 3.8 Flash
 
-```
-backend/
-├── app/
-│   ├── main.py                # FastAPI entry point, middleware, lifecycle
-│   ├── config.py              # Pydantic Settings & environment validation
-│   ├── dependencies.py        # Supabase JWT auth verification & dependencies
-│   ├── routers/
-│   │   ├── ai.py              # /api/v1/ai/* (summarize, explain, ask, etc.)
-│   │   ├── memory.py          # /api/v1/memory/* (semantic search, index)
-│   │   └── content.py         # /api/v1/content/* (save, retrieve items)
-│   ├── services/
-│   │   ├── gemini.py          # Gemini AI generation & prompt formatting
-│   │   ├── memory.py          # Chunking, gemini-embedding-2 vectors & RAG
-│   │   └── extractor.py       # Server-side HTML/text parsing utilities
-│   ├── models/
-│   │   └── schemas.py         # Pydantic models for requests and responses
-│   └── db/
-│       └── supabase.py        # Supabase PostgREST & pgvector client wrapper
-├── tests/                     # Unit and integration test suite
-├── pyproject.toml             # Project metadata and dependencies
-└── requirements.txt           # Frozen requirements
+---
+
+## Local Development Setup
+
+### 1. Create Python Virtual Environment
+
+```bash
+cd backend
+python -m venv .venv
+
+# Windows (PowerShell / Command Prompt)
+.venv\Scripts\activate
+
+# macOS / Linux
+source .venv/bin/activate
 ```
 
-## Relevant Documentation
+### 2. Install Dependencies
 
-- **AI Architecture:** [`docs/ai-architecture.md`](../docs/ai-architecture.md)
-- **API Specification:** [`docs/api-spec.md`](../docs/api-spec.md)
-- **System Architecture:** [`docs/architecture.md`](../docs/architecture.md)
-- **Database Schema:** [`docs/database-schema.md`](../docs/database-schema.md)
+```bash
+pip install -r requirements.txt
+```
 
-## Status
+### 3. Configure Environment Variables
 
-- **Phase 1 (Current):** Project foundation established. Implementation of endpoints, services, and packages will begin in Phase 2.
+Set your Gemini API key in your terminal or in a `.env` file (copy from root `.env.example`):
+
+```bash
+# Windows PowerShell
+$env:GEMINI_API_KEY="your-gemini-api-key-here"
+$env:GEMINI_MODEL="gemini-3.8-flash"
+
+# Windows CMD
+set GEMINI_API_KEY=your-gemini-api-key-here
+set GEMINI_MODEL=gemini-3.8-flash
+
+# macOS / Linux (bash/zsh)
+export GEMINI_API_KEY="your-gemini-api-key-here"
+export GEMINI_MODEL="gemini-3.8-flash"
+```
+
+> [!IMPORTANT]
+> Never commit your real API key to Git. The `.gitignore` at the repository root prevents `.env` and credential files from being tracked.
+
+### 4. Run the Development Server
+
+```bash
+uvicorn app.main:app --reload --host 127.0.0.1 --port 8000
+```
+
+The server will be available at:
+- **API Base:** `http://localhost:8000`
+- **Interactive OpenAPI Docs:** `http://localhost:8000/docs`
+- **Health Check:** `http://localhost:8000/health`
+
+### 5. Run the Test Suite
+
+```bash
+pytest -v
+```
+
+All unit tests run with mocked Gemini dependencies and do not require a live API key.
+
+---
+
+## API Endpoints
+
+### `GET /health`
+Returns system status.
+
+**Response:**
+```json
+{
+  "status": "ok"
+}
+```
+
+### `POST /api/v1/ai/summarize`
+Summarizes visible webpage content using Gemini AI.
+
+**Request:**
+```json
+{
+  "title": "Understanding Quantum Mechanics",
+  "url": "https://example.com/quantum",
+  "content": "Quantum mechanics is a fundamental theory in physics..."
+}
+```
+
+**Response:**
+```json
+{
+  "success": true,
+  "summary": "### Key Takeaways\n- Quantum mechanics operates at atomic scales...\n- Superposition allows qubits to evaluate states simultaneously...",
+  "title": "Understanding Quantum Mechanics",
+  "url": "https://example.com/quantum"
+}
+```
